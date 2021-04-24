@@ -20,10 +20,6 @@ public class Customer {
     private String address;
     private Integer status;
 
-//    @OneToMany(mappedBy = "customer")
-//    private List<Purchase> purchases = new ArrayList<>();
-
-
     public String getId() {
         return id;
     }
@@ -71,14 +67,6 @@ public class Customer {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
-//    public List<Purchase> getPurchases() {
-//        return purchases;
-//    }
-//
-//    public void setPurchases(List<Purchase> purchases) {
-//        this.purchases = purchases;
-//    }
 
     @Override
     public String toString() {
