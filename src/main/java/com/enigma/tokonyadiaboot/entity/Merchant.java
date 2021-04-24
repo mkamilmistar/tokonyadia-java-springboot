@@ -21,8 +21,8 @@ public class Merchant {
     private String email;
     private String phoneNumber;
 
-//    @OneToMany(mappedBy = "merchant")
-//    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "merchantId")
+    private List<Product> products = new ArrayList<>();
 
 
     public String getId() {
@@ -73,13 +73,13 @@ public class Merchant {
         this.phoneNumber = phoneNumber;
     }
 
-//    public List<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(List<Product> products) {
-//        this.products = products;
-//    }
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
 
     @Override
     public String toString() {
@@ -90,7 +90,7 @@ public class Merchant {
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-//                ", products=" + products +
+                ", products=" + products +
                 '}';
     }
 }

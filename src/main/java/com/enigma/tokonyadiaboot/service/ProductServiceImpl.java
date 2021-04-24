@@ -1,5 +1,6 @@
 package com.enigma.tokonyadiaboot.service;
 
+import com.enigma.tokonyadiaboot.entity.Merchant;
 import com.enigma.tokonyadiaboot.entity.Product;
 import com.enigma.tokonyadiaboot.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -19,6 +21,9 @@ public class ProductServiceImpl implements ProductService{
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    MerchantService merchantService;
 
     @Override
     public Product findProductById(String id) {
@@ -49,6 +54,12 @@ public class ProductServiceImpl implements ProductService{
     public void deleteProductById(String id) {
         validatePresent(id);
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Product> findAllByMerchant(String merchantId) {
+        Merchant merchant = merchantService.findMerchantById(merchantId);
+        return merchant.getProducts();
     }
 
     private void validatePresent(String id) {
