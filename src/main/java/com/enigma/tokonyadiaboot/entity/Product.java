@@ -32,10 +32,12 @@ public class Product {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
 
-    @ManyToOne
-    @JoinColumn(name = "merchant_id")
-    @JsonIgnoreProperties({"product"})
-    private Merchant merchant;
+    private String merchantId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "merchant_id")
+//    @JsonIgnoreProperties({"product"})
+//    private Merchant merchant;
 
 //    @OneToMany(mappedBy = "product")
 //    private List<Purchase> purchases = new ArrayList<>();
@@ -96,13 +98,21 @@ public class Product {
         this.updateDate = updateDate;
     }
 
-    public Merchant getMerchant() {
-        return merchant;
+    public String getMerchantId() {
+        return merchantId;
     }
 
-    public void setMerchant(Merchant merchant) {
-        this.merchant = merchant;
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
     }
+
+//    public Merchant getMerchant() {
+//        return merchant;
+//    }
+//
+//    public void setMerchant(Merchant merchant) {
+//        this.merchant = merchant;
+//    }
 
 //    public List<Purchase> getPurchases() {
 //        return purchases;
@@ -111,6 +121,7 @@ public class Product {
 //    public void setPurchases(List<Purchase> purchases) {
 //        this.purchases = purchases;
 //    }
+
 
     @Override
     public String toString() {
@@ -122,8 +133,7 @@ public class Product {
                 ", stock=" + stock +
                 ", createdDate=" + createdDate +
                 ", updateDate=" + updateDate +
-                ", merchant=" + merchant +
-//                ", purchases=" + purchases +
+                ", merchantId='" + merchantId + '\'' +
                 '}';
     }
 }

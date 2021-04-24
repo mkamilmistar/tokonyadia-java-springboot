@@ -32,7 +32,7 @@ public class MerchantResController {
     }
 
     @PutMapping("/merchant")
-    public Merchant updateMerchant(Merchant merchant){
+    public Merchant updateMerchant(@RequestBody Merchant merchant){
         return merchantService.updateMerchant(merchant);
     }
 
