@@ -1,11 +1,11 @@
 package com.enigma.tokonyadiaboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "m_purchases")
@@ -16,11 +16,17 @@ public class Purchase {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
-    private Integer quantity;
-    private Integer subTotal;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date purchaseDate;
 
-    private String customerId;
-    private String productId;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties({"purchase"})
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public String getId() {
         return id;
@@ -30,46 +36,37 @@ public class Purchase {
         this.id = id;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Date getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public Integer getSubTotal() {
-        return subTotal;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setSubTotal(Integer subTotal) {
-        this.subTotal = subTotal;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
     public String toString() {
         return "Purchase{" +
                 "id='" + id + '\'' +
-                ", quantity=" + quantity +
-                ", subTotal=" + subTotal +
-                ", customerId='" + customerId + '\'' +
-                ", productId='" + productId + '\'' +
+                ", purchaseDate=" + purchaseDate +
+                ", customer=" + customer +
+                ", product=" + product +
                 '}';
     }
 }

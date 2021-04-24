@@ -2,10 +2,9 @@ package com.enigma.tokonyadiaboot.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "m_merchants")
@@ -16,12 +15,13 @@ public class Merchant {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String id;
 
-    private String ownerName;
-    private String merchantName;
+    private String name;
     private String siup;
     private String address;
-    private String telephone;
-    private String productId;
+    private String phoneNumber;
+
+    @OneToMany(mappedBy = "merchant")
+    private List<Product> products = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -31,20 +31,12 @@ public class Merchant {
         this.id = id;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getName() {
+        return name;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
-    public String getMerchantName() {
-        return merchantName;
-    }
-
-    public void setMerchantName(String merchantName) {
-        this.merchantName = merchantName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSiup() {
@@ -63,32 +55,31 @@ public class Merchant {
         this.address = address;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getProductId() {
-        return productId;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
     public String toString() {
         return "Merchant{" +
                 "id='" + id + '\'' +
-                ", ownerName='" + ownerName + '\'' +
-                ", merchantName='" + merchantName + '\'' +
+                ", name='" + name + '\'' +
                 ", siup='" + siup + '\'' +
                 ", address='" + address + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", productId='" + productId + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

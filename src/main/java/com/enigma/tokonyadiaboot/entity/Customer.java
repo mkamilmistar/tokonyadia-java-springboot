@@ -2,10 +2,9 @@ package com.enigma.tokonyadiaboot.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "m_customers")
@@ -16,8 +15,14 @@ public class Customer {
     private String id;
 
     private String name;
+    private String email;
     private Integer phoneNumber;
-    private String domicileAddress;
+    private String address;
+    private Integer status;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Purchase> purchases = new ArrayList<>();
+
 
     public String getId() {
         return id;
@@ -35,6 +40,14 @@ public class Customer {
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Integer getPhoneNumber() {
         return phoneNumber;
     }
@@ -43,12 +56,28 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getDomicileAddress() {
-        return domicileAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDomicileAddress(String domicileAddress) {
-        this.domicileAddress = domicileAddress;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
     }
 
     @Override
@@ -56,8 +85,11 @@ public class Customer {
         return "Customer{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 ", phoneNumber=" + phoneNumber +
-                ", domicileAddress='" + domicileAddress + '\'' +
+                ", address='" + address + '\'' +
+                ", status=" + status +
+                ", purchases=" + purchases +
                 '}';
     }
 }
