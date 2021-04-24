@@ -34,14 +34,6 @@ public class Product {
 
     private String merchantId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "merchant_id")
-//    @JsonIgnoreProperties({"product"})
-//    private Merchant merchant;
-
-//    @OneToMany(mappedBy = "product")
-//    private List<Purchase> purchases = new ArrayList<>();
-
     public String getId() {
         return id;
     }
@@ -105,23 +97,6 @@ public class Product {
     public void setMerchantId(String merchantId) {
         this.merchantId = merchantId;
     }
-
-//    public Merchant getMerchant() {
-//        return merchant;
-//    }
-//
-//    public void setMerchant(Merchant merchant) {
-//        this.merchant = merchant;
-//    }
-
-//    public List<Purchase> getPurchases() {
-//        return purchases;
-//    }
-//
-//    public void setPurchases(List<Purchase> purchases) {
-//        this.purchases = purchases;
-//    }
-
 
     @Override
     public String toString() {

@@ -1,6 +1,5 @@
 package com.enigma.tokonyadiaboot.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,15 +22,6 @@ public class Purchase {
 
     private String customerId;
     private String productId;
-
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    @JsonIgnoreProperties({"purchases"})
-//    private Customer customer;
-
-//    @ManyToOne
-//    @JoinColumn(name = "product_id")
-//    private Product product;
 
     public String getId() {
         return id;
