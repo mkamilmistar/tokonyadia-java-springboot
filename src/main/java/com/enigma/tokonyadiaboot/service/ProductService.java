@@ -11,7 +11,7 @@ public interface ProductService {
     public Product findProductById(String id);
     public Page<Product> getProducts(Pageable pageable);
     public Product createProduct(Product product);
-    public Product updateProdcut(Product product);
+    public Product updateProduct(Product product);
     public void deleteProductById(String id);
-    public List<Product> findAllByMerchant(String merchantId);
+    public List<Product> findProductsByMerchant(String merchantId);
 }

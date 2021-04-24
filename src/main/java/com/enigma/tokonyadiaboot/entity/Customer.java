@@ -20,6 +20,9 @@ public class Customer {
     private String address;
     private Integer status;
 
+    @OneToMany(mappedBy = "customerId")
+    private List<Purchase> purchase = new ArrayList<>();
+
     public String getId() {
         return id;
     }
@@ -68,16 +71,24 @@ public class Customer {
         this.status = status;
     }
 
+    public List<Purchase> getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(List<Purchase> purchase) {
+        this.purchase = purchase;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", status=" + status +
-//                ", purchases=" + purchases +
+                ", purchase=" + purchase +
                 '}';
     }
 }

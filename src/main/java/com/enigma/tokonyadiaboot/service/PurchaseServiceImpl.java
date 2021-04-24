@@ -39,7 +39,7 @@ public class PurchaseServiceImpl implements PurchaseService{
         purchase.setPurchaseDate(new Date());
         Product updateProduct = productService.findProductById(purchase.getProductId());
         updateProduct.setStock(updateProduct.getStock() - purchase.getQuantity());
-        productService.updateProdcut(updateProduct);
+        productService.updateProduct(updateProduct);
         return purchaseRepository.save(purchase);
     }
 

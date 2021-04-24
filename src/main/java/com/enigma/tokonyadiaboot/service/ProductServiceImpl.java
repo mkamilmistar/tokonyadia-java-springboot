@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product updateProdcut(Product product) {
+    public Product updateProduct(Product product) {
         validatePresent(product.getId());
         product.setUpdateDate(new Date());
         return productRepository.save(product);
@@ -57,7 +57,7 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> findAllByMerchant(String merchantId) {
+    public List<Product> findProductsByMerchant(String merchantId) {
         Merchant merchant = merchantService.findMerchantById(merchantId);
         return merchant.getProducts();
     }

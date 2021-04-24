@@ -33,7 +33,7 @@ public class ProductResController {
 
     @PutMapping("/product")
     public Product updateProduct(@RequestBody Product product){
-        return productService.updateProdcut(product);
+        return productService.updateProduct(product);
     }
 
     @DeleteMapping("/product/{id}")

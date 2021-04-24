@@ -32,6 +32,9 @@ public class Product {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
 
+    @OneToMany(mappedBy = "productId")
+    private List<Purchase> purchases = new ArrayList<>();
+
     private String merchantId;
 
     public String getId() {
@@ -98,6 +101,14 @@ public class Product {
         this.merchantId = merchantId;
     }
 
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -108,6 +119,7 @@ public class Product {
                 ", stock=" + stock +
                 ", createdDate=" + createdDate +
                 ", updateDate=" + updateDate +
+                ", purchases=" + purchases +
                 ", merchantId='" + merchantId + '\'' +
                 '}';
     }

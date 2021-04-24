@@ -27,8 +27,8 @@ public class MerchantResController {
     }
 
     @GetMapping("/merchant/{id}/product")
-    public List<Product> findProductByMerchant(@PathVariable(name = "id") String id){
-        return productService.findAllByMerchant(id);
+    public List<Product> findProductsByMerchant(@PathVariable(name = "id") String id){
+        return productService.findProductsByMerchant(id);
     }
 
     @GetMapping("/merchants")
