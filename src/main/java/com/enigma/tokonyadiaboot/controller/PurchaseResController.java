@@ -1,6 +1,8 @@
 package com.enigma.tokonyadiaboot.controller;
 
+import com.enigma.tokonyadiaboot.entity.Product;
 import com.enigma.tokonyadiaboot.entity.Purchase;
+import com.enigma.tokonyadiaboot.service.ProductService;
 import com.enigma.tokonyadiaboot.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,6 +15,9 @@ public class PurchaseResController {
 
     @Autowired
     PurchaseService purchaseService;
+
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/purchase/{id}")
     public Purchase findPurchaseById(@PathVariable(name = "id") String id){
@@ -28,6 +33,9 @@ public class PurchaseResController {
 
     @PostMapping("/purchase")
     public Purchase createPurchase(@RequestBody Purchase purchase){
+        Product updateProduct = productService.findProductById(purchase.getProductId());
+        updateProduct.setStock(updateProduct.getStock()-1);
+        productService.updateProdcut(updateProduct);
         return purchaseService.createPurchase(purchase);
     }
 
