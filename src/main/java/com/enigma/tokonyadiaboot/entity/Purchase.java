@@ -24,9 +24,9 @@ public class Purchase {
     @JsonIgnoreProperties({"purchases"})
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "product_id")
+//    private Product product;
 
     public String getId() {
         return id;
@@ -52,13 +52,13 @@ public class Purchase {
         this.customer = customer;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+//    public Product getProduct() {
+//        return product;
+//    }
+//
+//    public void setProduct(Product product) {
+//        this.product = product;
+//    }
 
     @Override
     public String toString() {
@@ -66,7 +66,7 @@ public class Purchase {
                 "id='" + id + '\'' +
                 ", purchaseDate=" + purchaseDate +
                 ", customer=" + customer +
-                ", product=" + product +
+//                ", product=" + product +
                 '}';
     }
 }

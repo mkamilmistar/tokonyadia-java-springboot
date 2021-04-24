@@ -18,10 +18,12 @@ public class Merchant {
     private String name;
     private String siup;
     private String address;
+    private String email;
     private String phoneNumber;
 
     @OneToMany(mappedBy = "merchant")
     private List<Product> products = new ArrayList<>();
+
 
     public String getId() {
         return id;
@@ -55,6 +57,14 @@ public class Merchant {
         this.address = address;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -78,6 +88,7 @@ public class Merchant {
                 ", name='" + name + '\'' +
                 ", siup='" + siup + '\'' +
                 ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", products=" + products +
                 '}';

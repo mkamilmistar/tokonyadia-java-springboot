@@ -37,8 +37,8 @@ public class Product {
     @JsonIgnoreProperties({"product"})
     private Merchant merchant;
 
-    @OneToMany(mappedBy = "product")
-    private List<Purchase> purchases = new ArrayList<>();
+//    @OneToMany(mappedBy = "product")
+//    private List<Purchase> purchases = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -104,13 +104,13 @@ public class Product {
         this.merchant = merchant;
     }
 
-    public List<Purchase> getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(List<Purchase> purchases) {
-        this.purchases = purchases;
-    }
+//    public List<Purchase> getPurchases() {
+//        return purchases;
+//    }
+//
+//    public void setPurchases(List<Purchase> purchases) {
+//        this.purchases = purchases;
+//    }
 
     @Override
     public String toString() {
@@ -123,7 +123,7 @@ public class Product {
                 ", createdDate=" + createdDate +
                 ", updateDate=" + updateDate +
                 ", merchant=" + merchant +
-                ", purchases=" + purchases +
+//                ", purchases=" + purchases +
                 '}';
     }
 }
