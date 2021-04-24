@@ -16,12 +16,12 @@ public class Customer {
 
     private String name;
     private String email;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String address;
     private Integer status;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Purchase> purchases = new ArrayList<>();
+//    @OneToMany(mappedBy = "customer")
+//    private List<Purchase> purchases = new ArrayList<>();
 
 
     public String getId() {
@@ -48,11 +48,11 @@ public class Customer {
         this.email = email;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -72,13 +72,13 @@ public class Customer {
         this.status = status;
     }
 
-    public List<Purchase> getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(List<Purchase> purchases) {
-        this.purchases = purchases;
-    }
+//    public List<Purchase> getPurchases() {
+//        return purchases;
+//    }
+//
+//    public void setPurchases(List<Purchase> purchases) {
+//        this.purchases = purchases;
+//    }
 
     @Override
     public String toString() {
@@ -89,7 +89,7 @@ public class Customer {
                 ", phoneNumber=" + phoneNumber +
                 ", address='" + address + '\'' +
                 ", status=" + status +
-                ", purchases=" + purchases +
+//                ", purchases=" + purchases +
                 '}';
     }
 }

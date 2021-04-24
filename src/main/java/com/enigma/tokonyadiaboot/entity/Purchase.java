@@ -21,7 +21,7 @@ public class Purchase {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @JsonIgnoreProperties({"purchase"})
+    @JsonIgnoreProperties({"purchases"})
     private Customer customer;
 
     @ManyToOne
