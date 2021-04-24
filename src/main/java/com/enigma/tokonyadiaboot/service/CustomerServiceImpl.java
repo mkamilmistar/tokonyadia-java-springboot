@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
-    private String notFoundMessage = "Customer with id: %s Not Found";
+    private final String notFoundMessage = "Customer with id: %s Not Found";
 
     @Autowired
     CustomerRepository customerRepository;

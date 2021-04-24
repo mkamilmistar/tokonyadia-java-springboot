@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService{
 
-    private String notFoundMessage = "Product with id: %s Not Found";
+    private final String notFoundMessage = "Product with id: %s Not Found";
 
     @Autowired
     ProductRepository productRepository;

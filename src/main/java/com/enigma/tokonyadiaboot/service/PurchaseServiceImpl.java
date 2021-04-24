@@ -15,7 +15,8 @@ import java.util.Date;
 @Service
 public class PurchaseServiceImpl implements PurchaseService{
 
-    private String notFoundMessage = "Purchase with id: %s Not Found";
+    private final String notFoundMessage = "Purchase with id: %s Not Found";
+    private final String outOfStockMessage = "Product '%s' Out of Stock";
 
     @Autowired
     PurchaseRepository purchaseRepository;
@@ -38,6 +39,7 @@ public class PurchaseServiceImpl implements PurchaseService{
     public Purchase createPurchase(Purchase purchase) {
         purchase.setPurchaseDate(new Date());
         Product updateProduct = productService.findProductById(purchase.getProductId());
+        validateStock(purchase, updateProduct);
         updateProduct.setStock(updateProduct.getStock() - purchase.getQuantity());
         productService.updateProduct(updateProduct);
         return purchaseRepository.save(purchase);
@@ -47,6 +49,14 @@ public class PurchaseServiceImpl implements PurchaseService{
     public void deletePurchase(String id) {
         validatePresent(id);
         purchaseRepository.deleteById(id);
+    }
+
+
+    private void validateStock(Purchase purchase, Product updateProduct) {
+        if( updateProduct.getStock() - purchase.getQuantity() < 0){
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
+                    String.format(outOfStockMessage, updateProduct.getName()));
+        }
     }
 
     private void validatePresent(String id) {
