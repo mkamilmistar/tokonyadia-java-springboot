@@ -47,6 +47,9 @@ public class ProductServiceImpl implements ProductService{
     public Product updateProduct(Product product) {
         validatePresent(product.getId());
         product.setUpdateDate(new Date());
+        if(product.getStock().equals(0)){
+            product.setStatus(0);
+        }
         return productRepository.save(product);
     }
 
