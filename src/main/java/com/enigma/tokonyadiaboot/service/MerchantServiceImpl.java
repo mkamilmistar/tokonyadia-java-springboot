@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class MerchantServiceImpl implements MerchantService{
 
-    private String notFoundMessage = "Merchant with id: %s Not Found";
+    private final String notFoundMessage = "Merchant with id: %s Not Found";
 
     @Autowired
     MerchantRepository merchantRepository;

@@ -1,5 +1,6 @@
 package com.enigma.tokonyadiaboot.service;
 
+import com.enigma.tokonyadiaboot.entity.Product;
 import com.enigma.tokonyadiaboot.entity.Purchase;
 import com.enigma.tokonyadiaboot.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class PurchaseServiceImpl implements PurchaseService{
     @Autowired
     PurchaseRepository purchaseRepository;
 
+    @Autowired
+    ProductService productService;
+
     @Override
     public Purchase getPurchaseById(String id) {
         validatePresent(id);
@@ -33,6 +37,9 @@ public class PurchaseServiceImpl implements PurchaseService{
     @Override
     public Purchase createPurchase(Purchase purchase) {
         purchase.setPurchaseDate(new Date());
+        Product updateProduct = productService.findProductById(purchase.getProductId());
+        updateProduct.setStock(updateProduct.getStock() - purchase.getQuantity());
+        productService.updateProdcut(updateProduct);
         return purchaseRepository.save(purchase);
     }
 

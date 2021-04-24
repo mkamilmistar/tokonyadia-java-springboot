@@ -33,9 +33,6 @@ public class PurchaseResController {
 
     @PostMapping("/purchase")
     public Purchase createPurchase(@RequestBody Purchase purchase){
-        Product updateProduct = productService.findProductById(purchase.getProductId());
-        updateProduct.setStock(updateProduct.getStock() - purchase.getQuantity());
-        productService.updateProdcut(updateProduct);
         return purchaseService.createPurchase(purchase);
     }
 
