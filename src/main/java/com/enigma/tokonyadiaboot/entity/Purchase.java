@@ -19,6 +19,8 @@ public class Purchase {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date purchaseDate;
 
+    private Integer quantity;
+
     private String customerId;
     private String productId;
 
@@ -47,6 +49,14 @@ public class Purchase {
         this.purchaseDate = purchaseDate;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
@@ -68,6 +78,7 @@ public class Purchase {
         return "Purchase{" +
                 "id='" + id + '\'' +
                 ", purchaseDate=" + purchaseDate +
+                ", quantity=" + quantity +
                 ", customerId='" + customerId + '\'' +
                 ", productId='" + productId + '\'' +
                 '}';
