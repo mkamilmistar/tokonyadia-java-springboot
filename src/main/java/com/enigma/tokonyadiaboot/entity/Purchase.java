@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "m_purchases")
+@Table(name = "t_purchases")
 public class Purchase {
 
     @Id
@@ -19,10 +19,13 @@ public class Purchase {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date purchaseDate;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    @JsonIgnoreProperties({"purchases"})
-    private Customer customer;
+    private String customerId;
+    private String productId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    @JsonIgnoreProperties({"purchases"})
+//    private Customer customer;
 
 //    @ManyToOne
 //    @JoinColumn(name = "product_id")
@@ -44,29 +47,29 @@ public class Purchase {
         this.purchaseDate = purchaseDate;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
     @Override
     public String toString() {
         return "Purchase{" +
                 "id='" + id + '\'' +
                 ", purchaseDate=" + purchaseDate +
-                ", customer=" + customer +
-//                ", product=" + product +
+                ", customerId='" + customerId + '\'' +
+                ", productId='" + productId + '\'' +
                 '}';
     }
 }
