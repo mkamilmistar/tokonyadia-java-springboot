@@ -56,13 +56,13 @@
         size    : 10
     ```
 
-* ** Get Customer By ID**
+* **Get Customer By ID**
 
     url     : localhost:8080/customer/{customerId}
     
     method  : GET
 
-* ** Delete Customer By ID**
+* **Delete Customer By ID**
 
     url     : localhost:8080/customer/{customerId}
     
@@ -213,6 +213,40 @@
     }
     ```
     
+    **Business logic**
+    - Bila Produk dibeli, maka stock produk akan berkurang berdasarkan quantity pada saat pembelian.
+    ```
+    {
+        "id": "4028abff7909244f0179092943aa0001",
+        "purchaseDate": "2021-04-25T20:12:49.829+07:00",
+        "quantity": 1,
+        "customerId": "4028abff790400d30179040e6d930005",
+        "productId": "4028abff790400d30179040c296f0004"
+    }
+    ```
+    - Apabila stock product bernilai 0, maka tidak bisa dilakukan pembelian, dan akan diberikan message response
+    ```
+        {
+            "timestamp": "2021-04-25T20:09:12.816+07:00",
+            "status": 406,
+            "error": "Not Acceptable",
+            "message": "Product 'The Ordinary' **Not Enough**",
+            "path": "/purchase"
+        }
+    
+    ```
+    - Apabila Quantity purchase yang dibeli lebih besar dari stock product, maka product tidak akan bisa dibeli, dan akan diberikan message response
+     
+     ```
+        {
+            "timestamp": "2021-04-25T20:10:54.151+07:00",
+            "status": 406,
+            "error": "Not Acceptable",
+            "message": "Product 'Shampoo LifeBuoy Edited' **Out Of Stock**",
+            "path": "/purchase"
+        }
+    
+    ```
 * **Get All Purchase w/ Pagination**
 
     url     : localhost:8080/purchases?page=0&size=10
