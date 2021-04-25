@@ -229,10 +229,10 @@
     - Apabila stock product bernilai 0, maka tidak bisa dilakukan pembelian, dan akan diberikan message response
     ```
         {
-            "timestamp": "2021-04-25T20:09:12.816+07:00",
+            "timestamp": "2021-04-25T20:10:54.151+07:00",
             "status": 406,
             "error": "Not Acceptable",
-            "message": "Product 'The Ordinary' Not Enough",
+            "message": "Product 'Shampoo LifeBuoy' Out Of Stock",
             "path": "/purchase"
         }
     
@@ -241,10 +241,10 @@
      
      ```
         {
-            "timestamp": "2021-04-25T20:10:54.151+07:00",
+            "timestamp": "2021-04-25T20:09:12.816+07:00",
             "status": 406,
             "error": "Not Acceptable",
-            "message": "Product 'Shampoo LifeBuoy' Out Of Stock",
+            "message": "Product 'The Ordinary' Not Enough",
             "path": "/purchase"
         }
     
