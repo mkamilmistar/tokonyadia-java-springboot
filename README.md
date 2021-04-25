@@ -1,8 +1,12 @@
 # Tokonyadia App
 
 ## Database
+### Table
+![erd_tokonyadia](<./documentation/erd.png>) 
+![erd_tokonyadia](<./documentation/erd.png>) 
+![erd_tokonyadia](<./documentation/erd.png>) 
 ### ERD
-![erd_tokonyadia](<./erd.png>) 
+![erd_tokonyadia](<./documentation/erd.png>) 
 
 
 ## Guide
