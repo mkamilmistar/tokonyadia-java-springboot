@@ -1,13 +1,11 @@
 # Tokonyadia App
 
 ## Database
-### Table
-![erd_tokonyadia](<./documentation/erd.png>) 
-![erd_tokonyadia](<./documentation/erd.png>) 
-![erd_tokonyadia](<./documentation/erd.png>) 
-### ERD
-![erd_tokonyadia](<./documentation/erd.png>) 
 
+### ERD
+[**SQL FILE HERE**](https://git.enigmacamp.com/enigma-camp/class-mandiri/muhammad-kamil/java/challenge/challenge-tokonyadia-boot/-/blob/master/documentation/tokonyadia_emil.sql)
+
+![erd_tokonyadia](<./documentation/erd.png>) 
 
 ## Guide
 
