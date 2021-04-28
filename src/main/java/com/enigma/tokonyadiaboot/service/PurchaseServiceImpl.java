@@ -1,5 +1,6 @@
 package com.enigma.tokonyadiaboot.service;
 
+import com.enigma.tokonyadiaboot.entity.Customer;
 import com.enigma.tokonyadiaboot.entity.Product;
 import com.enigma.tokonyadiaboot.entity.Purchase;
 import com.enigma.tokonyadiaboot.repository.PurchaseRepository;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Service
@@ -24,6 +26,12 @@ public class PurchaseServiceImpl implements PurchaseService{
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    WalletService walletService;
+
+    @Autowired
+    CustomerService customerService;
 
     @Override
     public Purchase getPurchaseById(String id) {
@@ -42,6 +50,10 @@ public class PurchaseServiceImpl implements PurchaseService{
         Product updateProduct = productService.findProductById(purchase.getProductId());
         validateStock(purchase, updateProduct);
         updateProduct.setStock(updateProduct.getStock() - purchase.getQuantity());
+
+        //debit
+        walletService.debitWallet(purchase, updateProduct);
+
         productService.updateProduct(updateProduct);
         return purchaseRepository.save(purchase);
     }
@@ -51,7 +63,6 @@ public class PurchaseServiceImpl implements PurchaseService{
         validatePresent(id);
         purchaseRepository.deleteById(id);
     }
-
 
     private void validateStock(Purchase purchase, Product updateProduct) {
         if( updateProduct.getStock() == 0){
