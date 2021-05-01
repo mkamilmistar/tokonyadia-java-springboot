@@ -151,7 +151,9 @@
         "price": "140000",
         "status": "1",
         "stock": "20",
-        "merchantId": "4028abff790400d30179040349970001"
+        "merchant": {
+            "id" : "4028abff790400d30179040349970001"
+        }
     }
     ```
 * **Update Product**
@@ -170,7 +172,9 @@
         "stock": 25,
         "createdDate": "2021-04-24T00:00:00.000+07:00",
         "updateDate": "2021-04-24T00:00:00.000+07:00",
-        "merchantId": "4028abff790400d30179040349970001"
+        "merchant": {
+            "id" : "4028abff790400d30179040349970001"
+        }
     }
     ```
 * **Get All Products w/ Pagination**
@@ -209,8 +213,12 @@
     body    : 
     ```
     {
-        "customerId": "4028abff790400d30179040e6d930005",
-        "productId": "4028abff790400d30179040c296f0004",
+        "customer": {
+            "id" : "4028abff790400d30179040e6d930005"
+        },
+        "product": {
+            "id" :  "4028abff790400d30179040c296f0004"
+        },
         "quantity": 5
     }
     ```
@@ -222,24 +230,16 @@
         "id": "4028abff7909244f0179092943aa0001",
         "purchaseDate": "2021-04-25T20:12:49.829+07:00",
         "quantity": 1,
-        "customerId": "4028abff790400d30179040e6d930005",
-        "productId": "4028abff790400d30179040c296f0004"
+        "customer": {
+            "id" : "4028abff790400d30179040e6d930005"
+        },
+        "product": {
+            "id" :  "4028abff790400d30179040c296f0004"
+        },
     }
     ```
     - Apabila stock product bernilai 0, maka tidak bisa dilakukan pembelian, dan akan diberikan message response
     ```
-        {
-            "timestamp": "2021-04-25T20:09:12.816+07:00",
-            "status": 406,
-            "error": "Not Acceptable",
-            "message": "Product 'The Ordinary' Not Enough",
-            "path": "/purchase"
-        }
-    
-    ```
-    - Apabila Quantity purchase yang dibeli lebih besar dari stock product, maka product tidak akan bisa dibeli, dan akan diberikan message response
-     
-     ```
         {
             "timestamp": "2021-04-25T20:10:54.151+07:00",
             "status": 406,
@@ -249,6 +249,19 @@
         }
     
     ```
+    - Apabila Quantity purchase yang dibeli lebih besar dari stock product, maka product tidak akan bisa dibeli, dan akan diberikan message response
+     
+     ```
+        {
+            "timestamp": "2021-04-25T20:09:12.816+07:00",
+            "status": 406,
+            "error": "Not Acceptable",
+            "message": "Product 'The Ordinary' Not Enough",
+            "path": "/purchase"
+        }
+    
+    ```
+
 * **Get All Purchase w/ Pagination**
 
     url     : localhost:8080/purchases?page=0&size=10
@@ -260,12 +273,14 @@
         page    : 0
         size    : 10
     ```
+
 * **Get Purchase By ID**
 
     url     : localhost:8080/purchase/{purchaseId}
     
     method  : GET
     
+
 * **Delete Purchase By ID**
 
     url     : localhost:8080/purchase/{purchaseId}
