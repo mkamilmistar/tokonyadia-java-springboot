@@ -1,14 +1,10 @@
 package com.enigma.tokonyadiaboot.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
 public class WalletDto {
 
-    @Id
     private String id;
     private String phoneNumber;
     private BigDecimal balance;
