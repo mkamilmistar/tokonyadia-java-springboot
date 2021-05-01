@@ -1,6 +1,7 @@
 package com.enigma.tokonyadiaboot.service;
 
 import com.enigma.tokonyadiaboot.entity.Merchant;
+import com.enigma.tokonyadiaboot.projectioin.CustomerPurchasesProjection;
 import com.enigma.tokonyadiaboot.repository.MerchantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Service
 public class MerchantServiceImpl implements MerchantService{
@@ -21,6 +24,12 @@ public class MerchantServiceImpl implements MerchantService{
     public Merchant findMerchantById(String id) {
         validatePresent(id);
         return merchantRepository.findById(id).get();
+    }
+
+    @Override
+    public List<CustomerPurchasesProjection> getAllCustomersByMerchantId(String merchantId){
+        List<CustomerPurchasesProjection> customerPurchasesProjection = merchantRepository.showAllCustomersByMerchantId(merchantId);
+        return customerPurchasesProjection;
     }
 
     @Override

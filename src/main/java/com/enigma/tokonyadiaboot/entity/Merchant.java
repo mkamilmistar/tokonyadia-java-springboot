@@ -1,5 +1,7 @@
 package com.enigma.tokonyadiaboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,9 +23,8 @@ public class Merchant {
     private String email;
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "merchantId")
+    @OneToMany(mappedBy = "merchant")
     private List<Product> products = new ArrayList<>();
-
 
     public String getId() {
         return id;
@@ -81,16 +82,4 @@ public class Merchant {
         this.products = products;
     }
 
-    @Override
-    public String toString() {
-        return "Merchant{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", siup='" + siup + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", products=" + products +
-                '}';
-    }
 }

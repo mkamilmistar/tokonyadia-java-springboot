@@ -1,5 +1,6 @@
 package com.enigma.tokonyadiaboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,10 +33,14 @@ public class Product {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date updateDate;
 
-    @OneToMany(mappedBy = "productId")
+    @ManyToOne
+    @JoinColumn(name = "merchant_id")
+    @JsonIgnoreProperties("products")
+    private Merchant merchant;
+
+    @OneToMany(mappedBy = "product")
     private List<Purchase> purchases = new ArrayList<>();
 
-    private String merchantId;
 
     public String getId() {
         return id;
@@ -93,12 +98,12 @@ public class Product {
         this.updateDate = updateDate;
     }
 
-    public String getMerchantId() {
-        return merchantId;
+    public Merchant getMerchant() {
+        return merchant;
     }
 
-    public void setMerchantId(String merchantId) {
-        this.merchantId = merchantId;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 
     public List<Purchase> getPurchases() {
@@ -107,20 +112,5 @@ public class Product {
 
     public void setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", status=" + status +
-                ", stock=" + stock +
-                ", createdDate=" + createdDate +
-                ", updateDate=" + updateDate +
-                ", purchases=" + purchases +
-                ", merchantId='" + merchantId + '\'' +
-                '}';
     }
 }

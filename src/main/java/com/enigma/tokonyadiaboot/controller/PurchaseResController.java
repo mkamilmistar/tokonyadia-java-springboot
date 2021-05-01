@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class PurchaseResController {
 
@@ -23,6 +25,11 @@ public class PurchaseResController {
     @GetMapping("/purchase/{id}")
     public Purchase findPurchaseById(@PathVariable(name = "id") String id){
         return purchaseService.getPurchaseById(id);
+    }
+
+    @GetMapping("/purchase-customer/{id}")
+    public List<Purchase> findPurchaseByCustomer(@PathVariable(name = "id") String customerId){
+        return purchaseService.findPurchasesByCustomerId(customerId);
     }
 
     @GetMapping("/purchases")

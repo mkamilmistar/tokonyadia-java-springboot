@@ -1,5 +1,7 @@
 package com.enigma.tokonyadiaboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -20,8 +22,9 @@ public class Customer {
     private String address;
     private Integer status;
 
-    @OneToMany(mappedBy = "customerId")
-    private List<Purchase> purchase = new ArrayList<>();
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnoreProperties("customer")
+    private List<Purchase> purchases = new ArrayList<>();
 
     public String getId() {
         return id;
@@ -71,24 +74,11 @@ public class Customer {
         this.status = status;
     }
 
-    public List<Purchase> getPurchase() {
-        return purchase;
+    public List<Purchase> getPurchases() {
+        return purchases;
     }
 
-    public void setPurchase(List<Purchase> purchase) {
-        this.purchase = purchase;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", status=" + status +
-                ", purchase=" + purchase +
-                '}';
+    public void setPurchase(List<Purchase> purchases) {
+        this.purchases = purchases;
     }
 }

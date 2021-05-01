@@ -19,6 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService{
@@ -57,6 +58,11 @@ public class PurchaseServiceImpl implements PurchaseService{
     }
 
     @Override
+    public List<Purchase> findPurchasesByCustomerId(String customerId){
+        return purchaseRepository.findPurchasesByCustomer_Id(customerId);
+    }
+
+    @Override
     public Page<Purchase> getPurchases(Pageable pageable) {
         return purchaseRepository.findAll(pageable);
     }
@@ -64,12 +70,12 @@ public class PurchaseServiceImpl implements PurchaseService{
     @Override
     public Purchase createPurchase(Purchase purchase) throws JsonProcessingException {
         purchase.setPurchaseDate(new Date());
-        Product updateProduct = productService.findProductById(purchase.getProductId());
+        Product updateProduct = productService.findProductById(purchase.getProduct().getId());
         validateStock(purchase, updateProduct);
         updateProduct.setStock(updateProduct.getStock() - purchase.getQuantity());
 
         //Debit
-        Customer customer = customerService.findCustomerById(purchase.getCustomerId());
+        Customer customer = customerService.findCustomerById(purchase.getCustomer().getId());
         BigDecimal price = new BigDecimal(purchase.getQuantity());
         BigDecimal total = price.multiply(updateProduct.getPrice());
 

@@ -1,7 +1,11 @@
 package com.enigma.tokonyadiaboot.controller;
 
+import com.enigma.tokonyadiaboot.entity.Customer;
 import com.enigma.tokonyadiaboot.entity.Merchant;
 import com.enigma.tokonyadiaboot.entity.Product;
+import com.enigma.tokonyadiaboot.entity.Purchase;
+import com.enigma.tokonyadiaboot.projectioin.CustomerPurchasesProjection;
+import com.enigma.tokonyadiaboot.service.CustomerService;
 import com.enigma.tokonyadiaboot.service.MerchantService;
 import com.enigma.tokonyadiaboot.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,9 @@ public class MerchantResController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    CustomerService customerService;
+
     @GetMapping("/merchant/{id}")
     public Merchant findMerchantById(@PathVariable(name = "id") String id){
         return merchantService.findMerchantById(id);
@@ -29,6 +36,21 @@ public class MerchantResController {
     @GetMapping("/merchant/{id}/product")
     public List<Product> findProductsByMerchant(@PathVariable(name = "id") String id){
         return productService.findProductsByMerchant(id);
+    }
+
+    @GetMapping("/merchant/{id}/customer")
+    public List<CustomerPurchasesProjection> findCustomerByMerchant(@PathVariable(name = "id") String merchantId){
+        return merchantService.getAllCustomersByMerchantId(merchantId);
+    }
+
+    @GetMapping("/merchant/customers")
+    public List<Customer> findCustomers(){
+        return customerService.findAllCustomer();
+    }
+
+    @GetMapping("/merchant/{id}/customers")
+    public List<Customer> findCustomersByMerchant(@PathVariable(name = "id") String merchantId){
+        return null;
     }
 
     @GetMapping("/merchants")

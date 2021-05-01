@@ -1,7 +1,10 @@
 package com.enigma.tokonyadiaboot.service;
 
 import com.enigma.tokonyadiaboot.entity.Customer;
+import com.enigma.tokonyadiaboot.entity.Merchant;
 import com.enigma.tokonyadiaboot.repository.CustomerRepository;
+import com.enigma.tokonyadiaboot.repository.MerchantRepository;
+import net.bytebuddy.agent.builder.AgentBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,12 +12,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class CustomerServiceImpl implements CustomerService{
     private final String notFoundMessage = "Customer with id: %s Not Found";
 
     @Autowired
     CustomerRepository customerRepository;
+
+    @Autowired
+    MerchantService merchantService;
+
 
     @Override
     public Customer findCustomerById(String id) {
@@ -25,6 +34,11 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Page<Customer> searchCustomer(Pageable pageable) {
         return customerRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Customer> findAllCustomer(){
+        return  customerRepository.findAll();
     }
 
     @Override

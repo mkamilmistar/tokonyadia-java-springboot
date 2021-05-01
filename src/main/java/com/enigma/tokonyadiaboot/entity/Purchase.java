@@ -1,10 +1,14 @@
 package com.enigma.tokonyadiaboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "t_purchases")
@@ -20,8 +24,15 @@ public class Purchase {
 
     private Integer quantity;
 
-    private String customerId;
-    private String productId;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties("purchases")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @JsonIgnoreProperties("purchases")
+    private Product product;
 
     public String getId() {
         return id;
@@ -47,30 +58,19 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    @Override
-    public String toString() {
-        return "Purchase{" +
-                "id='" + id + '\'' +
-                ", purchaseDate=" + purchaseDate +
-                ", quantity=" + quantity +
-                ", customerId='" + customerId + '\'' +
-                ", productId='" + productId + '\'' +
-                '}';
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
