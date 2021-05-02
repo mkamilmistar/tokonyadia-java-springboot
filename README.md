@@ -19,9 +19,10 @@
 * Use Create Purchase API
 * You can use the [jar file](https://git.enigmacamp.com/enigma-camp/class-mandiri/muhammad-kamil/java/challenge/challenge-tokonyadia-boot/-/tree/email-feature/jar) to run this app 
 * **Result**
-![email-notif](<./documentation/Email_notification.png>) 
-![email-notif](<./documentation/email_notification_2.png>) 
-![email-notif](<./documentation/email_notification_logger.png>) 
+
+![email-notif](<./documentation/Email notification.png >) 
+![email-notif](<./documentation/Email notification.png >) 
+![email-notif](<./documentation/email notification logger.png>) 
 
 
 ### GET Customer Purchases By Merchant ID
