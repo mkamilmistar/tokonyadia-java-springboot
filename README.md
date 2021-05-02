@@ -8,6 +8,43 @@
 ![erd_tokonyadia](<./documentation/erd.png>) 
 
 ## Guide
+### Set Up
+* Turn on kafka zookeper and kafka server
+* Turn on redis server
+* Configure redis-cli then set the key and value with ```set wallet.endpoint.url http://localhost:8090/debit```
+
+
+### Send Email Asynchronous
+
+* Use Create Purchase API
+* You can use the [jar file](https://git.enigmacamp.com/enigma-camp/class-mandiri/muhammad-kamil/java/challenge/challenge-tokonyadia-boot/-/tree/email-feature/jar) to run this app 
+
+### GET Customer Purchases By Merchant ID
+* url     : localhost:8080/merchant/{merchantId}/customer
+* method  : POST
+    
+    **Example** 
+    
+    url     : localhost:8080/merchant/4028abff790400d30179040349970001/customer
+        
+    **Result**
+```
+[
+    {
+        "customerName": "Kamil",
+        "totalPurchase": 10500
+    },
+    {
+        "customerName": "Maudy Haikal Abdilla",
+        "totalPurchase": 2100000
+    },
+    {
+        "customerName": "Melia Suspariana",
+        "totalPurchase": 47040000
+    }
+]
+```
+
 
 ### Customer API
 * **Create Customer**
@@ -133,8 +170,6 @@
     url     : localhost:8080/merchant/{merchantId}
     
     method  : DELETE
-
-
 
 
 ### Product API
